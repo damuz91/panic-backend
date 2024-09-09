@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Detalles de solicitud</h1>
+      <%= link_to "Regresar", admin_path, class: 'btn btn-primary' %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Destino</th>
+            <th>Tipo</th>
+            <th>Mensaje</th>
+            <th>Respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request.messages.each do |message| %>
+            <tr>
+              <td><%= message.created_at %></td>
+              <td><%= message.destination %></td>
+              <td><%= message.message_type %></td>
+              <td><%= message.message %></td>
+              <td><%= message.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

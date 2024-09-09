@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Detalles del usuario</h1>
+      <%= link_to "Regresar", admin_path, class: 'btn btn-primary' %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td><%= @user.store_user_id %></td>
+          </tr>
+          <tr>
+            <td>Nombre</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>Fecha de creación</td>
+            <td><%= @user.created_at %></td>
+          </tr>
+          <tr>
+            <td>Premium</td>
+            <td><%= @user.is_premium %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2> Historial de solicitudes </h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>SO</th>
+            <th>Tipo</th>
+            <th>Mensajes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.requests.each do |log| %>
+            <tr>
+              <td><%= log.created_at %></td>
+              <td><%= log.os %></td>
+              <td><%= log.request_type %></td>
+              <td><%= link_to log.messages.count, request_details_path(log.id), class: 'btn btn-primary btn-xs' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

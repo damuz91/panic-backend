@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request: one
+  message: MyString
+  destination: MyString
+  message_type: MyString
+  status: MyString
+  name: MyString
+
+two:
+  request: two
+  message: MyString
+  destination: MyString
+  message_type: MyString
+  status: MyString
+  name: MyString
