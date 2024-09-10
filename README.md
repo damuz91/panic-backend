@@ -35,3 +35,7 @@ Para la DB de producción uso SQLite, ya que no espero tener alta concurrencia y
 # Despliegue
 
 Pueden ver en mi canal el video donde explico como hacer deploy de una app de ruby on rails, también tengo artículos en Medium. Con esta infraestructura uso la gema mina para poder hacer despliegue mediante el uso de un bash script que ejecuta la gema. Solo se debe modificar el archivo deploy.rb
+
+A la hora de hacer despliegue, se debe crear, migrar y seedear la base de datos.
+Cuando se seede la base de datos sadrá un mensaje indicando el admin y el password por defecto, se debe anotar ya que no se puede recuperar, aunque se puede cambiar desde la consola.
+Luego se debe copiar los archivos de production.sqlite3* en la carpeta shared/storage para que subsecuentes deployments hagan symlink y no se pierda la base de datos en cada deploy.
