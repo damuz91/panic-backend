@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @requests = Request.all.order(created_at: :desc)
   end

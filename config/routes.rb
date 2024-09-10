@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  root to: "admin#index"
   get 'admin' => 'admin#index'
   get 'user/:id' => 'admin#user', as: 'user'
   get 'request_details/:id' => 'admin#request_details', as: 'request_details'
