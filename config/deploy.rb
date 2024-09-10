@@ -12,7 +12,7 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'panic-backend'
-set :domain, '104.248.233.181' # Reemplazar por la ip de la maquina
+set :domain, ENV['IP'] # Reemplazar por la ip de la maquina
 set :deploy_to, '/home/ubuntu/production/panic-backend' # Reemplazar por la ruta donde se va a desplegar la aplicacion
 set :repository, 'git@github.com:damuz91/panic-backend.git' # Reemplazar por la url del repositorio
 set :branch, 'main'
