@@ -1,0 +1,21 @@
+[Unit]
+Description=Puma
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+
+Environment=RAILS_ENV=production
+WorkingDirectory=/home/ubuntu/production/panic-backend/current
+EnvironmentFile=/home/ubuntu/production/panic-backend/current/.env.production
+# ExecStart=/usr/local/rvm/gems/ruby-3.3.2/bin/bundle exec puma -C /home/ubuntu/production/panic-backend/current/config/puma/production.rb
+# ExecStart=/usr/local/rvm/gems/ruby-3.3.2/bin/puma -C /home/ubuntu/production/panic-backend/current/config/puma/production.rb
+ExecStart=/usr/local/rvm/gems/ruby-3.3.2/wrappers/bundle exec puma -C /home/ubuntu/production/panic-backend/current/config/puma/production.rb
+
+
+PIDFile=/home/ubuntu/production/panic-backend/current/puma.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

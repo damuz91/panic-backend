@@ -13,11 +13,12 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 set :application_name, 'panic-backend'
 set :domain, '104.248.233.181' # Reemplazar por la ip de la maquina
-set :deploy_to, '/home/ubuntu/panic-backend' # Reemplazar por la ruta donde se va a desplegar la aplicacion
-set :repository, 'git@github.com:damuz91/panic-frontend.git' # Reemplazar por la url del repositorio
+set :deploy_to, '/home/ubuntu/production/panic-backend' # Reemplazar por la ruta donde se va a desplegar la aplicacion
+set :repository, 'git@github.com:damuz91/panic-backend.git' # Reemplazar por la url del repositorio
 set :branch, 'main'
 set :user, 'ubuntu'          # Reemplazar por el usuario de la maquina
 set :forward_agent, true     # SSH forward_agent.
+set :rvm_use_path, '/usr/local/rvm/bin/rvm'
 
 # Optional settings:
 
@@ -28,7 +29,8 @@ set :forward_agent, true     # SSH forward_agent.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 # set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
-# set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
+
+set :shared_files, fetch(:shared_files, []).push('config/master.key')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -38,7 +40,7 @@ task :remote_environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use', 'ruby-2.5.3@default'
+  invoke :'rvm:use', 'ruby-3.3.2@default'
 end
 
 # Put any custom commands you need to run at setup
@@ -60,13 +62,13 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
     on :launch do
       in_path(fetch(:current_path)) do
         command %(mkdir -p tmp/)
         command %(touch tmp/restart.txt)
+        command 'sudo service puma restart'
       end
     end
   end

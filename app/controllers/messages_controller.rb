@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
 
   private
   def check_api_key
-    if request.headers['Authorization'] != Rails.application.credentials.api_header_key
+    if request.headers['Authorization'] != ENV['api_key_header']
       render json: {message: 'No estas autorizado para realizar esta acción'}, status: 403
       return
     end

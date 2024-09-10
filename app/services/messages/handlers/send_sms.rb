@@ -40,7 +40,7 @@ class Messages::Handlers::SendSms < Messages::Base
 
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Basic " + Base64.strict_encode64(Rails.application.credentials.sms_api_key)
+    request["Authorization"] = "Basic " + Base64.strict_encode64(ENV['SMS_API_KEY'])
     request.body = JSON.dump({
       "message": "#{'[PRUEBA] ' if is_test}#{message[:message]}",
       "tpoa": "Sender",

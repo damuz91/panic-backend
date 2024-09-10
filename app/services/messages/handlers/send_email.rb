@@ -36,7 +36,7 @@ class Messages::Handlers::SendEmail < Messages::Base
     require "net/http"
     headers = {
       "accept": "application/json",
-      'api-key': Rails.application.credentials.email_api_key,
+      'api-key': ENV['EMAIL_API_KEY'],
       "content-type": "application/json"
     }
     body = {
