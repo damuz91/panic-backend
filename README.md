@@ -32,6 +32,8 @@ Mi versión de producción incluye un mecanismo de rechazo de solicitudes adicio
 
 Para la DB de producción uso SQLite, ya que no espero tener alta concurrencia y asi me evito instalar servicios y agregar dependencias. Una versión mas robusta de esta app puede usar una base de datos tipo SQL o NoSQL.
 
+En local iniciar con el comando `rails s -b 0.0.0.0` esto permitirá conexión desde los emuladores de la app en Flutter, siempre que estén en la misma red.
+
 # Despliegue
 
 Pueden ver en mi canal el video donde explico como hacer deploy de una app de ruby on rails, también tengo artículos en Medium. Con esta infraestructura uso la gema mina para poder hacer despliegue mediante el uso de un bash script que ejecuta la gema. Solo se debe modificar el archivo deploy.rb

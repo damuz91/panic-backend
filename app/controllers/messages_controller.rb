@@ -33,7 +33,9 @@ class MessagesController < ApplicationController
 
   private
   def check_api_key
-    if request.headers['Authorization'] != ENV['api_key_header']
+    if request.headers['Authorization'] != ENV['API_KEY_HEADER']
+      puts "API KEY: #{request.headers['Authorization']}"
+      puts "ENV API KEY: #{ENV['API_KEY_HEADER']}"
       render json: {message: 'No estas autorizado para realizar esta acción'}, status: 403
       return
     end
